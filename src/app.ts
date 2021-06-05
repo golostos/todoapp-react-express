@@ -1,10 +1,12 @@
 import { config } from "dotenv";
-config()
+import path from "path";
+if (process.env.NODE_ENV === 'production') {
+    config({path: path.resolve(process.cwd(), '.env.production')})
+} else config()
 import cors from "cors";
 import express, {ErrorRequestHandler} from "express";
 import tasksRouter from "./features/tasks/tasks.router";
 import usersRouter from "./features/users/users.router";
-import path from "path";
 
 const port = process.env.PORT || 4000
 
